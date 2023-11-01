@@ -19,11 +19,6 @@ def main():
         filtered_df = filtered_df[filtered_df['analysis_field'] == '1C консультант']
     elif main_filter == 'Бухгалтер':
         filtered_df = filtered_df[filtered_df['analysis_field'] == 'Бухгалтер']
-<<<<<<< HEAD
-=======
-    row_count = len(filtered_df)
->>>>>>> 9c846e3a6b1b73d42926930803c2b7675bbcef9c
-
 
     # Фильтры по опыту и зарплате
     experience_options = df['experience'].unique()
