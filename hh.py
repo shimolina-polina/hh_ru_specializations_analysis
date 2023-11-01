@@ -153,14 +153,9 @@ def main():
     fig = px.bar(top_10_df, x='Навык', y='Количество', title='Топ-10 навыков')
     st.plotly_chart(fig, use_container_width=True)
 
->>>>>>> 9c846e3a6b1b73d42926930803c2b7675bbcef9c
     # Таблица вакансий
     st.write(filtered_df[['Название', 'Опыт работы', 'Ссылка', 'Зарплата от', 'Зарплата до', 'Ключевые навыки']])
 
 
 if __name__ == "__main__":
-<<<<<<< HEAD
     main()
-=======
-    main()
->>>>>>> 9c846e3a6b1b73d42926930803c2b7675bbcef9c
