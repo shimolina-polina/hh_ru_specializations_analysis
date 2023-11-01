@@ -19,7 +19,6 @@ def main():
         filtered_df = filtered_df[filtered_df['analysis_field'] == '1C консультант']
     elif main_filter == 'Бухгалтер':
         filtered_df = filtered_df[filtered_df['analysis_field'] == 'Бухгалтер']
-    row_count = len(filtered_df)
 
 
     # Фильтры по опыту и зарплате
@@ -71,6 +70,8 @@ def main():
     filtered_df = filtered_df[filtered_df['Ключевые навыки'].apply(lambda x: any(skill in str(x) for skill in selected_skills) if selected_skills else True)]
 
     # Таблички с количеством вакансий
+    row_count = len(filtered_df)
+
     st.success(f"Количество вакансий: {row_count}")
 
     # График количество вакансий в зависимости от зарплаты для разных стажей
