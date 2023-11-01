@@ -39,7 +39,7 @@
 Для работы приложения необходим файл vacancies.csv. Для его получения запустить vacancies.ipynb
 Затем запустить hh.py
 ```sh
-python hh.py
+streamlit run hh.py
 ```
 
 ## Contributing
