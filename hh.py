@@ -112,7 +112,6 @@ def main():
     fig = px.bar(top_10_df, x='Навык', y='Количество', title='Топ-10 навыков')
     st.plotly_chart(fig, use_container_width=True)
 
-=======
     st.success(f"Количество вакансий: {row_count}")
 
     # График количество вакансий в зависимости от зарплаты для разных стажей
