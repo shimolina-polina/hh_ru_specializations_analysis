@@ -19,6 +19,10 @@ def main():
         filtered_df = filtered_df[filtered_df['analysis_field'] == '1C консультант']
     elif main_filter == 'Бухгалтер':
         filtered_df = filtered_df[filtered_df['analysis_field'] == 'Бухгалтер']
+<<<<<<< HEAD
+=======
+    row_count = len(filtered_df)
+>>>>>>> 9c846e3a6b1b73d42926930803c2b7675bbcef9c
 
 
     # Фильтры по опыту и зарплате
@@ -70,6 +74,7 @@ def main():
     filtered_df = filtered_df[filtered_df['Ключевые навыки'].apply(lambda x: any(skill in str(x) for skill in selected_skills) if selected_skills else True)]
 
     # Таблички с количеством вакансий
+<<<<<<< HEAD
     row_count = len(filtered_df)
 
     st.success(f"Количество вакансий: {row_count}")
@@ -113,9 +118,56 @@ def main():
     fig = px.bar(top_10_df, x='Навык', y='Количество', title='Топ-10 навыков')
     st.plotly_chart(fig, use_container_width=True)
 
+=======
+    st.success(f"Количество вакансий: {row_count}")
+
+    # График количество вакансий в зависимости от зарплаты для разных стажей
+
+    df = filtered_df.groupby(['Опыт работы', 'Зарплата от']).count()['id'].reset_index()
+
+    fig_salary_from_experience = px.bar(df, x='Зарплата от', y='id', color='Опыт работы', 
+                barmode='group', title='Распределение нижних границ зарплат')
+
+    fig_salary_from_experience.update_layout(xaxis_title='Зарплата от, тыс. руб.',
+                    yaxis_title='Количество вакансий')
+
+    st.plotly_chart(fig_salary_from_experience)
+
+    df = filtered_df.groupby(['Опыт работы', 'Зарплата до']).count()['id'].reset_index()
+
+    fig_salary_to_experience = px.bar(df, x='Зарплата до', y='id', color='Опыт работы', 
+                barmode='group', title='Распределение верхних границ зарплат')
+
+    fig_salary_to_experience.update_layout(xaxis_title='Зарплата до, тыс. руб.',
+                    yaxis_title='Количество вакансий')
+    st.plotly_chart(fig_salary_to_experience)
+
+    # График количество вакансий в зависимости от опыта
+    fig_experience_counts = px.bar(filtered_df.groupby('Опыт работы')['id'].count().reset_index(), x='Опыт работы', y='id', title='Распределение вакансий по опыту работы')
+    st.plotly_chart(fig_experience_counts)
+
+    skills_counts = {}
+
+    for skill in unique_skills:
+        skill = re.escape(skill)
+        skills_counts[skill] = filtered_df['Ключевые навыки'].str.count(skill).sum()
+        
+    sorted_skills_counts = dict(sorted(skills_counts.items(), key=lambda x: x[1], reverse=True))
+
+    top_10_df = pd.DataFrame(list(sorted_skills_counts.items())[:10])
+    top_10_df.columns = ['Навык', 'Количество']
+
+    fig = px.bar(top_10_df, x='Навык', y='Количество', title='Топ-10 навыков')
+    st.plotly_chart(fig, use_container_width=True)
+
+>>>>>>> 9c846e3a6b1b73d42926930803c2b7675bbcef9c
     # Таблица вакансий
     st.write(filtered_df[['Название', 'Опыт работы', 'Ссылка', 'Зарплата от', 'Зарплата до', 'Ключевые навыки']])
 
 
 if __name__ == "__main__":
+<<<<<<< HEAD
     main()
+=======
+    main()
+>>>>>>> 9c846e3a6b1b73d42926930803c2b7675bbcef9c
