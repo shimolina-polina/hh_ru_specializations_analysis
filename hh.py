@@ -17,8 +17,10 @@ def main():
 
     if main_filter == '1C консультант':
         filtered_df = filtered_df[filtered_df['analysis_field'] == '1C консультант']
+        specialist = "1C консультант"
     elif main_filter == 'Бухгалтер':
         filtered_df = filtered_df[filtered_df['analysis_field'] == 'Бухгалтер']
+        specialist = "Бухгалтер"
 
     # Фильтры по опыту и зарплате
     experience_options = df['experience'].unique()
@@ -71,7 +73,7 @@ def main():
     # Таблички с количеством вакансий
     row_count = len(filtered_df)
 
-    st.success(f"Количество вакансий: {row_count}")
+    st.success(f"Для сециальности {specialist} количество вакансий: {row_count}")
 
     # График количество вакансий в зависимости от зарплаты для разных стажей
 
@@ -111,8 +113,6 @@ def main():
 
     fig = px.bar(top_10_df, x='Навык', y='Количество', title='Топ-10 навыков')
     st.plotly_chart(fig, use_container_width=True)
-
-    st.success(f"Количество вакансий: {row_count}")
 
     # График количество вакансий в зависимости от зарплаты для разных стажей
 
