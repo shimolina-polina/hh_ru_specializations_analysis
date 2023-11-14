@@ -1,6 +1,6 @@
 # hh_ru_specializations_analysis
 
-# Имя проекта
+## Имя проекта
 
 Анализ вакансий hh.ru
 
